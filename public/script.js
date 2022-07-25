@@ -78,6 +78,10 @@ function next() {
         document.querySelector('#kontakt').innerHTML = '<p style="font-size:10px">  Użytkownik nie podał danych do kontaktu </p>';
     }
 
+    setTimeout(function(){
+        activatePopovers();
+    },1500);
+
 
 
 
