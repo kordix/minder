@@ -134,11 +134,13 @@ if (count($_FILES) == 0) {
   } else {
     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
-      // if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-      //     echo "Plik " . basename($_FILES["fileToUpload"]["name"]) . " został wrzucony. \r\n";
-      // } else {
-      //     echo "Sory, wystąpił jakiś błąd";
-      // }
+      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+          echo "Plik " . basename($_FILES["fileToUpload"]["name"]) . " został wrzucony. \r\n";
+      } else {
+          echo "Sory, wystąpił jakiś błąd";
+          echo basename($_FILES["fileToUpload"]["name"]);
+          echo $target_file;
+      }
   }
 
   ?>
