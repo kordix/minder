@@ -33,13 +33,12 @@ if (!isset($_SESSION['zalogowany'])) {
         <p id="authzone"></p>
         <!-- <a href="/api/logout.php"><button class="btn btn-secondary">Wyloguj</button></a>  -->
         
-        <div><img class="img-fluid" style="max-height:300px" src="images/admin.jpg" alt="" id="profileimage"></div>
+        <div><img class="img-fluid" style="max-height:300px" src="" alt="" id="profileimage"></div>
 
-        <p id="name">Kordian</p>
-        <p id="technologies">PHP JS LARAVEL VANILLAJS</p>
-        <p id="localisation"><a href="https://www.google.com/maps/place/Wejherowo"> <i class="bi bi-geo-alt"></i>
-                <span>Wejherowo</span></a> </p>
-        <p id="description">Główny twórca strony</p>
+        <p id="name"></p>
+        <p id="technologies"></p>
+        <p id="localisation"></p>
+        <p id="description"></p>
         <button class="btn btn-warning"><i class="bi bi-sign-turn-left"></i></button>
         <button class="btn btn-danger">Nope</button>
         <button class="btn btn-success" id="next">Like</button>
