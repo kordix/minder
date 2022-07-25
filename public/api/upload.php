@@ -132,7 +132,7 @@ if (count($_FILES) == 0) {
       echo "Sorry, plik nie został zuploadowany \r\n";
   // if everything is ok, try to upload file
   } else {
-    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file
+    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
       // if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
       //     echo "Plik " . basename($_FILES["fileToUpload"]["name"]) . " został wrzucony. \r\n";
