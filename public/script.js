@@ -58,7 +58,7 @@ function next() {
     document.querySelector('#kontakt').innerHTML = '';
 
     if (currentitem.localisation) {
-        document.querySelector('#localisation').innerHTML = `<a href="https://www.google.com/maps/place/Wejherowo"><i class="bi bi-geo-alt"></i><span>Wejherowo</span></a> `
+        document.querySelector('#localisation').innerHTML = `<a href="https://www.google.com/maps/place/${currentitem.localisation}"><i class="bi bi-geo-alt"></i><span>${currentitem.localisation}</span></a> `
     }
 
     if (currentitem.facebook) {
