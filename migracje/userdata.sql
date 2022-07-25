@@ -1,5 +1,5 @@
 CREATE TABLE `userdata` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `login` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
   `technologies` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',

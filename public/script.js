@@ -55,7 +55,7 @@ function next() {
     }
 
     if (currentitem.facebook) {
-        document.querySelector('#kontakt').innerHTML += `<a href="${currentitem.facebook}" target="_blank"><i class="bi bi-facebook" style="font-size:50px"></i></a>`;
+        document.querySelector('#kontakt').innerHTML += `<a href="http://${currentitem.facebook}" target="_blank"><i class="bi bi-facebook" style="font-size:50px"></i></a>`;
     }
 
     if (currentitem.email) {
