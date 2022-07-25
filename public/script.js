@@ -60,9 +60,11 @@ function next() {
 
     if (currentitem.email) {
         document.querySelector('#kontakt').innerHTML += `<i class="bi bi-envelope" data-bs-toggle="popover" title="E-mail" data-bs-content="${currentitem.email}" alt="${currentitem.email}" style="font-size:50px;cursor:pointer"></i>`;
+        activatePopovers();
     }
     if (currentitem.skype) {
         document.querySelector('#kontakt').innerHTML += `<i class="bi bi-skype" data-bs-toggle="popover" title="Skype" data-bs-content="${currentitem.skype}" alt="${currentitem.skype}" style="font-size:50px;cursor:pointer"></i>`;
+    
     }
 
     if (document.querySelector('#kontakt').innerHTML == '') {
