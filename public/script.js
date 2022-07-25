@@ -35,6 +35,13 @@ loadData().then((res) => {
     next();
 });
 
+function  activatePopovers(){
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+}
+
 function next() {
     console.log(currentindex);
     currentindex++;
