@@ -27,10 +27,10 @@ print_r($dane);
 
 $query = "UPDATE userdata SET $kwerenda WHERE login = '$login'";
 echo $query;
-$sth = $dbh->prepare($query);
+$query_run = $conn->prepare($query);
 
 
-if ($sth->execute() ==false) {
+if ($query_run->execute() ==false) {
     echo 'nie udało się';
 }
 

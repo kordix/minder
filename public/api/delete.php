@@ -6,8 +6,8 @@ $tabela = $data->tabela;
 $id = $data->id;
 
 
-$sth = $dbh->prepare("DELETE FROM $tabela WHERE id=$id");
-$sth->execute();
+$query_run = $conn->prepare("DELETE FROM $tabela WHERE id=$id");
+$query_run->execute();
 
 
 

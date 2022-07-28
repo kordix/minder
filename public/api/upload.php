@@ -75,6 +75,8 @@ if (!isset($_SESSION['zalogowany'])) {
 </body>
 
   <?php
+  require_once 'db.php';
+
   define('SITE_ROOT', realpath(dirname(__FILE__)));
 
 
@@ -83,18 +85,25 @@ if (!isset($_SESSION['zalogowany'])) {
   @$folder = $_POST['folder'];
 
   $folder = 'dupa';
-  $folder = $_SESSION['login'];
+  //$folder = $_SESSION['login'];
+  $folder = '';
 
 
-if (count($_FILES) == 0) {
-    return;
-}
+  if (count($_FILES) == 0) {
+      return;
+  }
 
-   $target_dir = "../images/";
+   $target_dir = "../images";
    $target_file = $target_dir . $folder . '/'. basename($_FILES["fileToUpload"]["name"]);
    
    $uploadOk = 1;
    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+   if ($imageFileType == 'php'){
+    echo 'niedozwolony plik';
+    return;
+   }
+
 
    $path =$target_dir . $folder . '/';
    $num = count(glob($path . "/*")) + 1;
@@ -111,8 +120,8 @@ if (count($_FILES) == 0) {
           echo "Jest obrazek - " . $check["mime"] . ".";
           $uploadOk = 1;
       } else {
-          // echo "File is not an image.";
-          $uploadOk = 1;
+           echo "Plik nie jest obrazkiem. Mam nadzieję że nie chcesz przesłać jakiegoś syfu";
+          $uploadOk = 0;
       }
   }
 
@@ -132,16 +141,28 @@ if (count($_FILES) == 0) {
       echo "Sorry, plik nie został zuploadowany \r\n";
   // if everything is ok, try to upload file
   } else {
-    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+   // move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+
+
 
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
           echo "Plik " . basename($_FILES["fileToUpload"]["name"]) . " został wrzucony. \r\n";
+          $filename = $num.'.'.$imageFileType;
+          $query = "INSERT INTO images (id, `user_id` ,imageid , link , `description` ) VALUES (default, ?, ? , '' , '')";
+          $query_run = $conn->prepare($query);
+          $query_run->execute([$_SESSION['userid'],$filename]);
+
+   
+
+
       } else {
        //   echo "Sory, wystąpił jakiś błąd";
           echo basename($_FILES["fileToUpload"]["name"]);
           echo $target_file;
       }
   }
+
+
 
   ?>
 

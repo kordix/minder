@@ -19,8 +19,8 @@ $kolumny = substr($kolumny, 0, -1);
 $values = substr($values, 0, -1);
 $query = "INSERT INTO $tabela ($kolumny) VALUES  ($values)";
 echo $query;
-$sth = $dbh->prepare($query);
-if ($sth->execute() == false) {
+$query_run = $conn->prepare($query);
+if ($query_run->execute() == false) {
     echo 'error';
 }
 ?>

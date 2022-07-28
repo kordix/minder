@@ -28,6 +28,9 @@ if (!isset($_SESSION['zalogowany'])) {
 <body>
 
 <p id="login" style="display:none"><?php echo isset($_SESSION['login']) ? $_SESSION['login'] : '' ?></p>
+<p id="userid" style="display:none"><?php echo isset($_SESSION['login']) ? $_SESSION['userid'] : '' ?></p>
+
+
 
     <div style="max-width:400px;margin:auto">
         <p id="authzone"></p>

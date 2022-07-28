@@ -15,11 +15,11 @@ $dane = json_decode(file_get_contents('php://input'));
 $login = $dane->login;
 $password = md5($dane->password);
 
-if(!isset($dbh)){
+if(!isset($conn)){
     return;
 }
 
-$query_run = $dbh->prepare("SELECT * FROM users where login = '$login' and password = '$password'");
+$query_run = $conn->prepare("SELECT * FROM users where login = '$login' and password = '$password'");
 $query_run->execute();
 
 class dummy {}

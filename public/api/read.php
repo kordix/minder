@@ -21,13 +21,13 @@ if(isset($dane->id)){
 
 //REPLACE
 try{
-$sth = $dbh->prepare("SELECT * FROM $tabela $where");
+$query_run = $conn->prepare("SELECT * FROM $tabela $where");
 }catch(Exception $e){
     echo $e->getMessage();
     return http_response_code(500);
 }finally{
-    $sth->execute();
-    $rows = $sth->fetchAll(PDO::FETCH_CLASS, "dummy");
+    $query_run->execute();
+    $rows = $query_run->fetchAll(PDO::FETCH_CLASS, "dummy");
     echo json_encode($rows);
 
 }

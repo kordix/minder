@@ -1,12 +1,12 @@
 let cruddata = [
     {
-        
+
     },
     {
-    
+
     },
     {
-    
+
     }
 ]
 
@@ -16,6 +16,7 @@ let currentitem = {}
 
 let login = '';
 let imagenum = 1;
+let images = [];
 
 async function loadData() {
     login = document.querySelector('#login').innerHTML;
@@ -25,7 +26,9 @@ async function loadData() {
         document.querySelector('#authzone').innerHTML = `<span style="display:none"><b>${login}</b></span>     <a href="/views/settings.php"><button class="btn btn-secondary">Ustawienia</button></a>  <a href="/api/logout.php"><button class="btn btn-secondary">Wyloguj</button></a> `;
     }
     let self = this;
-    await fetch('/api/read.php', { method: 'POST', body: JSON.stringify({ tabela: 'userdata' }) }).then(res => res.json()).then((res) => cruddata = res)
+    await fetch('/api/read.php', { method: 'POST', body: JSON.stringify({ tabela: 'userdata' }) }).then(res => res.json()).then((res) => cruddata = res);
+
+
 
 }
 
@@ -35,14 +38,14 @@ loadData().then((res) => {
     next();
 });
 
-function  activatePopovers(){
+function activatePopovers() {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
         return new bootstrap.Popover(popoverTriggerEl)
     })
 }
 
-function next() {
+async function next() {
     console.log(currentindex);
     currentindex++;
     if (currentindex >= cruddata.length) {
@@ -53,7 +56,9 @@ function next() {
     document.querySelector('#description').innerHTML = currentitem.description;
     document.querySelector('#localisation').innerHTML = currentitem.localisation;
     document.querySelector('#technologies').innerHTML = currentitem.technologies;
-    document.querySelector('#profileimage').src = `images/${currentitem.login}/1.jpg`;
+
+    document.querySelector('#profileimage').src = '';
+
 
     document.querySelector('#kontakt').innerHTML = '';
 
@@ -71,16 +76,23 @@ function next() {
     }
     if (currentitem.skype) {
         document.querySelector('#kontakt').innerHTML += `<i class="bi bi-skype" data-bs-toggle="popover" title="Skype" data-bs-content="${currentitem.skype}" alt="${currentitem.skype}" style="font-size:50px;cursor:pointer"></i>`;
-    
+
     }
 
     if (document.querySelector('#kontakt').innerHTML == '') {
         document.querySelector('#kontakt').innerHTML = '<p style="font-size:10px">  Użytkownik nie podał danych do kontaktu </p>';
     }
 
-    setTimeout(function(){
+    let querydata = { id: currentitem.id }
+    await fetch('/api/readimages.php', { method: 'POST', body: JSON.stringify(querydata) }).then(res => res.json()).then((res) => images = res);
+
+    if (images[0]) {
+        document.querySelector('#profileimage').src = `images/${images[0].imageid}`;
+    }
+
+    setTimeout(function () {
         activatePopovers();
-    },1500);
+    }, 1500);
 
 
 

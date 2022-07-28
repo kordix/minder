@@ -10,11 +10,11 @@ $login = "'".$dane->login."'";
 $password = md5($dane->password);
 
 $query = "INSERT INTO users (login,password) VALUES ($login,'$password');";
-$sth = $dbh->prepare($query);
-$sth->execute();
+$query_run = $conn->prepare($query);
+$query_run->execute();
 
 $query = "INSERT INTO userdata (login) VALUES ($login);  ";
-$sth = $dbh->prepare($query);
-$sth->execute();
+$query_run = $conn->prepare($query);
+$query_run->execute();
     
 ?>

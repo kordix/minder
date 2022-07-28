@@ -23,10 +23,10 @@ $kwerenda = substr($kwerenda, 0, -1);
 $query = "UPDATE $tabela SET $kwerenda WHERE id=$id";
 echo $query;
 
-$sth = $dbh->prepare($query);
+$query_run = $conn->prepare($query);
 
 //replace
-if($sth->execute() ==false ){
+if($query_run->execute() ==false ){
       echo 'nie udało się';
     }
 ?>

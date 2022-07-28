@@ -7,10 +7,12 @@ require_once 'db.php';
 
 $dane = json_decode(file_get_contents('php://input'));
 
-$login = $dane->login;
+$id = $dane->id;
 
 //REPLACE
-$query_run = $conn->prepare("SELECT * FROM userdata where login = '$login'");
+$query = "SELECT * FROM images where user_id = $id";
+//  echo $query;
+$query_run = $conn->prepare($query);
 $query_run->execute();
 
 class dummy {}
@@ -20,4 +22,4 @@ $rows = $query_run->fetchAll(PDO::FETCH_CLASS, "dummy");
 
 $results=[];
 
-echo json_encode($rows[0]);
+echo json_encode($rows);
